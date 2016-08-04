@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt-ruby'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rails_12factor'
 
 
 gem 'sdoc', '~> 0.4.0', group: :doc
