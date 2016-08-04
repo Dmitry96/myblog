@@ -1,0 +1,23 @@
+ <%= image_tag comment.user.avatar.url, width: 50 %>
+ <%= User.find(comment.user_id).email %> 
+
+<li class="comment">
+  <h3><%= comment.title %></h3>
+
+  <div class="body">
+    <%= comment.body %>
+  </div>
+
+  <% if comment.user_id == current_user.id %>
+  <%= link_to "Удалить", post_comment_path(@post, comment), :method => :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Редактировать', edit_post_comment_path(@post, comment) %> 
+  <% end %>   
+  <%= link_to 'Add a Reply', new_comment_comment_path(comment) %>
+
+
+  <% unless comment.comments.empty? %>
+    <ul class="comment_list">
+      <%= render :partial => 'comments/comment', :collection => comment.comments %>
+    </ul>
+  <% end %>
+</li>

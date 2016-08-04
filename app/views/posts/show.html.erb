@@ -1,0 +1,16 @@
+<div class="container">
+
+<h1><%= @post.title %></h1>
+ 
+<div class="body">
+  <%= @post.body %>  
+</div>
+ 
+<h2>Comments</h2>
+ 
+<p><%= link_to 'Add a Comment', new_post_comment_path(@post) %></p>
+ 
+<ul class="comment_list">
+  <%= render :partial => 'comments/comment', :collection => @post.comments %>
+</ul>
+</div>

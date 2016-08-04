@@ -1,0 +1,14 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: testapp_development
+  pool: 5
+  username: testapp
+  password: 663865sas
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: testapp_test
+  pool: 5
+  username: testapp
+  password: 663865sas

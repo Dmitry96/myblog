@@ -1,0 +1,23 @@
+<%=  render 'shared/header' %>
+	<div class="container">
+		<% @posts.each do |post| %>
+		  <article class="row">
+            <aside class="col-lg-2.post-meta">
+                <div class="col-lg-10">
+                    <div class="avatar">   
+                        <%= image_tag post.user.avatar.url, width: 50 %>
+                        <%= post.user.name %>
+                    </div> 
+                    <h2><%= link_to post.title, post %></h2>
+                    <div class="text-right">
+                    <% if post.user_id == current_user.id %>
+    			    <%= link_to 'Редактировать', edit_post_path(post) %> 
+                    <%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Are you sure?' } %> 
+    	            <% end %>
+    	            </div>
+                </div>  
+            </aside>      
+		  </article>
+        <% end %> 
+	</div>	
+<%=  render 'shared/footer' %>

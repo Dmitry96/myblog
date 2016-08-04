@@ -1,0 +1,7 @@
+<div class= "container" %>
+<%= form_for [@parent, @comment] do |f| %>
+	<%= f.text_area :title %>
+	<%= f.text_area :body %>
+	<%= f.submit %>
+<% end %>
+</div>
