@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
-   before_filter :get_parent
-   
+  before_filter :get_parent
+  before_action :comment_find, only: [:edit, :update, :destroy]
+
   def new
     @comment = @parent.comments.build
   end
  
   def edit
-    @comment = Comment.find(params[:id])
+
   end
 
 
@@ -22,7 +23,7 @@ class CommentsController < ApplicationController
 
 
   def update
-    @comment = Comment.find(params[:id])
+
     @comment.update(params[:comment].permit(:content))
     
     respond_to do |format|
@@ -35,7 +36,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+
     @comment.destroy
     redirect_to posts_path
   end
@@ -46,6 +47,9 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body, :title, :user_id, :commentable_id, :commentable_type)
   end
 
+  def comment_find
+    @comment = Comment.find(params[:id])
+  end
    
   def get_parent
     @parent = Post.find_by_id(params[:post_id]) if params[:post_id]

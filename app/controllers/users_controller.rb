@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :user_find,      only: [:edit, :update, :show]
+
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -11,7 +12,6 @@ class UsersController < ApplicationController
   end 
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def create
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       redirect_to posts_url
     else
@@ -38,6 +37,10 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)                           
+    end
+
+    def user_find
+      @user = User.find(params[:id])
     end
 
     def signed_in_user
